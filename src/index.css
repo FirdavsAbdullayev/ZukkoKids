@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-kid-bg font-fun text-slate-800 antialiased;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(168, 218, 220, 0.3) 0, transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(205, 180, 219, 0.3) 0, transparent 40%),
+      radial-gradient(circle at 50% 50%, rgba(255, 243, 176, 0.22) 0, transparent 60%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  button {
+    @apply select-none;
+  }
+
+  input, select, textarea {
+    @apply text-base;
+  }
+}
+
+@layer components {
+  /* Glassmorphism karta */
+  .glass-card {
+    @apply rounded-blob border border-white/60 shadow-soft backdrop-blur-md;
+    background: rgba(255, 255, 255, 0.72);
+  }
+
+  /* Katta, bosishga qulay tugma */
+  .btn-candy {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-2.5
+           font-bold text-white shadow-candy transition-all duration-150
+           active:translate-y-1 active:shadow-none sm:px-6 sm:py-3;
+  }
+
+  .btn-candy:focus-visible {
+    @apply ring-4 ring-candy-purple/40 outline-none;
+  }
+
+  /* Porlaydigan (shimmer) tugma */
+  .btn-glow {
+    @apply relative overflow-hidden;
+    animation: glowPulse 2.2s ease-in-out infinite;
+  }
+
+  .btn-glow::after {
+    content: '';
+    @apply absolute inset-0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 70%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+    pointer-events: none;
+  }
+
+  /* Kategoriya pill */
+  .pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold
+           sm:px-4 sm:py-1.5 sm:text-sm;
+  }
+
+  /* O'yin karta (doracha hover effekt) */
+  .play-card {
+    @apply rounded-blob border-2 border-transparent p-5 transition-all duration-300;
+  }
+
+  .play-card:hover {
+    @apply -translate-y-1.5 shadow-pop border-white/70;
+  }
+}
+
+@layer utilities {
+  .text-shadow-soft {
+    text-shadow: 0 2px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(120deg, #7b2cbf, #4361ee, #f72585, #ff8500);
+  }
+
+  /* Ketma-ket chiqish animatsiyasi uchun */
+  .animate-stagger {
+    animation: slideUp 0.5s ease-out both;
+  }
+
+  .glass-nav {
+    @apply rounded-2xl border border-white/50 bg-white/40 backdrop-blur-md shadow-soft;
+  }
+}
+
+/* Scrollbar (bola uchun yumshoq) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 44, 191, 0.3);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 44, 191, 0.5);
+}
+
+/* Rang choyshabi (input range) */
+input[type='range'] {
+  @apply h-2 cursor-pointer appearance-none rounded-full bg-soft-purple;
+}
+input[type='range']::-webkit-slider-thumb {
+  @apply h-5 w-5 appearance-none rounded-full bg-candy-purple border-2 border-white shadow-candy;
+}
+input[type='range']::-moz-range-thumb {
+  @apply h-5 w-5 rounded-full bg-candy-purple border-2 border-white shadow-candy;
+}
